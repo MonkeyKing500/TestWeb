@@ -10,6 +10,6 @@ WORKDIR /test-web
 
 EXPOSE 4040
 
-ADD ./jar/TestWeb-0.0.1-SNAPSHOT.jar ./
+ADD ./target/TestWeb-0.0.1-SNAPSHOT.jar ./
 
 CMD java $JAVA_OPTS -jar TestWeb-0.0.1-SNAPSHOT.jar
