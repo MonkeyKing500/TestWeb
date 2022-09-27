@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>TestWeb</artifactId>
+    <artifactId>test-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TestWeb</name>
-    <description>TestWeb</description>
+    <name>test-web</name>
+    <description>test-web</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -39,12 +39,30 @@
     </dependencies>
 
     <build>
+        <finalName>${project.name}</finalName>
+        <!--设置打包名称用于便于部署-->
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <configuration>
+                    <imageName>${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <!--Dockerfile文件目录-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.artifactId}.jar</include>
+                        </resource>
+                    </resources>
+                    <serverId>docker-harbor</serverId>
+                    <forceTags>true</forceTags>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
 
 </project>
