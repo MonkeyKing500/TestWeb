@@ -8,8 +8,8 @@ RUN mkdir -p /test-web
 
 WORKDIR /test-web
 
-EXPOSE 4040
+EXPOSE 8099
 
 ADD ./target/test-web.jar ./
 
-CMD java $JAVA_OPTS -jar TestWeb-0.0.1-SNAPSHOT.jar
+CMD java $JAVA_OPTS -jar test-web.jar
